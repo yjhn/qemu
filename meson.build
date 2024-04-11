@@ -4030,6 +4030,7 @@ if have_tools
   if have_ivshmem
     subdir('contrib/ivshmem-client')
     subdir('contrib/ivshmem-server')
+    subdir('contrib/ivshmem2-server')
   endif
 endif
 
