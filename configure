@@ -265,6 +265,8 @@ unset target_list_exclude
 tcg="auto"
 cfi="false"
 
+tests="disabled"
+
 # Meson has PIE as a boolean rather than enabled/disabled/auto,
 # and we also need to check for -static-pie before Meson runs
 # which requires knowing whether --static is enabled.
@@ -704,6 +706,10 @@ for opt do
     # autoconf-generated configure scripts. This allows QEMU's
     # configure to be used by RPM and similar macros that set
     # lots of directory switches by default.
+  ;;
+  --enable-tests) tests="enabled"
+  ;;
+  --disable-tests) tests="disabled"
   ;;
   --enable-debug)
       # Enable debugging options that aren't excessively noisy
@@ -1787,6 +1793,7 @@ if test "$skip_meson" = no; then
   test -n "${LIB_FUZZING_ENGINE+xxx}" && meson_option_add "-Dfuzzing_engine=$LIB_FUZZING_ENGINE"
   test "$plugins" = yes && meson_option_add "-Dplugins=true"
   test "$tcg" != enabled && meson_option_add "-Dtcg=$tcg"
+  meson_option_add "-Dtests=$tests"
   run_meson() {
     NINJA=$ninja $meson setup "$@" "$PWD" "$source_path"
   }

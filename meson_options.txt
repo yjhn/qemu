@@ -39,6 +39,8 @@ option('coroutine_backend', type: 'combo',
 # on the configure script command line.  After adding an option
 # here make sure to run "make update-buildoptions".
 
+option('tests', type : 'feature', value : 'auto',
+       description: 'Tests build support')
 option('docs', type : 'feature', value : 'auto',
        description: 'Documentations build support')
 option('fuzzing', type : 'boolean', value: false,
